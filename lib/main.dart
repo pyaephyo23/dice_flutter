@@ -22,20 +22,58 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  const DicePage({super.key});
+
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  var leftDiceNumber = 1;
+  var rightDiceNumber = 1;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Image.asset('images/dice1.png')
-        ),
-        Expanded(
-          child: Image(
-            image: AssetImage('images/dice1.png'),
+    return Center(
+      child: Row(
+        children: [
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: InkWell(
+              splashColor: Colors.black12,
+              onTap: () {
+                setState(() {
+                  if (leftDiceNumber == 6) {
+                    leftDiceNumber = 1;
+                  } else {
+                    leftDiceNumber = leftDiceNumber + 1;
+                  }
+                });
+              },
+              child: Image.asset('images/dice$leftDiceNumber.png'),
+            ),
+          )),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: InkWell(
+                splashColor: Colors.black12,
+                onTap: () {
+                  setState(() {
+                    if (rightDiceNumber == 6) {
+                      rightDiceNumber = 1;
+                    } else {
+                      rightDiceNumber = rightDiceNumber + 1;
+                    }
+                  });
+                },
+                child: Image.asset('images/dice$rightDiceNumber.png'),
+              ),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
