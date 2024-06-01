@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -44,11 +46,13 @@ class _DicePageState extends State<DicePage> {
               splashColor: Colors.black12,
               onTap: () {
                 setState(() {
-                  if (leftDiceNumber == 6) {
-                    leftDiceNumber = 1;
-                  } else {
-                    leftDiceNumber = leftDiceNumber + 1;
-                  }
+                  // if (leftDiceNumber == 6) {
+                  //   leftDiceNumber = 1;
+                  // } else {
+                  //   leftDiceNumber = leftDiceNumber + 1;
+                  // }
+
+                  leftDiceNumber = Random().nextInt(6)+1;
                 });
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
@@ -61,11 +65,12 @@ class _DicePageState extends State<DicePage> {
                 splashColor: Colors.black12,
                 onTap: () {
                   setState(() {
-                    if (rightDiceNumber == 6) {
-                      rightDiceNumber = 1;
-                    } else {
-                      rightDiceNumber = rightDiceNumber + 1;
-                    }
+                    // if (rightDiceNumber == 6) {
+                    //   rightDiceNumber = 1;
+                    // } else {
+                    //   rightDiceNumber = rightDiceNumber + 1;
+                    // }
+                    rightDiceNumber = Random().nextInt(6)+1;
                   });
                 },
                 child: Image.asset('images/dice$rightDiceNumber.png'),
