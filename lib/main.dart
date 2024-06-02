@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
           title: Text('Dicee'),
           backgroundColor: Colors.lightGreen,
         ),
-        body: DicePage(),
+        body: SafeArea(
+          child: DicePage(),
+        ),
       ),
     );
   }
@@ -34,6 +36,14 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   var leftDiceNumber = 1;
   var rightDiceNumber = 1;
+
+  void changeDice() {
+    setState(() {
+      rightDiceNumber = Random().nextInt(6) + 1;
+      leftDiceNumber = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -45,15 +55,7 @@ class _DicePageState extends State<DicePage> {
             child: InkWell(
               splashColor: Colors.black12,
               onTap: () {
-                setState(() {
-                  // if (leftDiceNumber == 6) {
-                  //   leftDiceNumber = 1;
-                  // } else {
-                  //   leftDiceNumber = leftDiceNumber + 1;
-                  // }
-
-                  leftDiceNumber = Random().nextInt(6)+1;
-                });
+                changeDice();
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
@@ -64,14 +66,7 @@ class _DicePageState extends State<DicePage> {
               child: InkWell(
                 splashColor: Colors.black12,
                 onTap: () {
-                  setState(() {
-                    // if (rightDiceNumber == 6) {
-                    //   rightDiceNumber = 1;
-                    // } else {
-                    //   rightDiceNumber = rightDiceNumber + 1;
-                    // }
-                    rightDiceNumber = Random().nextInt(6)+1;
-                  });
+                  changeDice();
                 },
                 child: Image.asset('images/dice$rightDiceNumber.png'),
               ),
